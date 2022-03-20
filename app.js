@@ -27,8 +27,10 @@ function resetGame() {
   targetNumber = Math.floor(Math.random() * 20) + 1;
   number.innerText = '?';
   message.innerText = 'Start guessing...';
+  message.style.color = '#eee';
   scoreArea.innerHTML = score;
   document.body.style.background = '#222';
+  checkBtn.disabled = false;
 }
 
 // check user gess
@@ -41,6 +43,7 @@ function checkGess() {
       number.innerText = targetNumber;
       message.innerText = 'Correct number !!';
       document.body.style.background = '#60b347';
+      checkBtn.disabled = true;
       // store highscore in localStorage
       if (Number(highscore.textContent) < score) {
         localStorage.setItem('highscore', score);
@@ -52,6 +55,11 @@ function checkGess() {
       } else {
         message.innerText = 'To low !!';
       }
+    }
+    if (score < 1) {
+      message.innerText = 'You lost the game !!';
+      message.style.color = '#dc2626';
+      checkBtn.disabled = true;
     }
   }
 }
