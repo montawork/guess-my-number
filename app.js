@@ -36,6 +36,7 @@ function resetGame() {
 // check user gess
 function checkGess() {
   if (input.value) {
+    message.style.color = '#eee';
     score--;
     scoreArea.innerHTML = score;
     const guessNumber = Number(input.value);
@@ -61,5 +62,8 @@ function checkGess() {
       message.style.color = '#dc2626';
       checkBtn.disabled = true;
     }
+  } else {
+    message.innerHTML = 'please enter a valid number';
+    message.style.color = '#facc15';
   }
 }
